@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int *delete_by_value(int arr[], int x, int count){
+	int i, j;
+		
+	for(i = 0; i < count; i++) {
+		if(arr[i] == arr[x - 1])
+		   break;
+	}
+	for(j = i; j < (count - 1); j++)
+	    arr[j] = arr[j + 1];
+	
+	count--;
+	return arr;
+}
+
+int main(){
+	int arr[5];
+	printf("Enter 5 elements in array : ");
+	for(int k = 0; k < 5; k++)
+		scanf("%d", &arr[k]);
+	printf("Stored element in array : %d %d %d %d %d", arr[0], arr[1], arr[2], arr[3], arr[4]);
+	
+	int num;
+	printf("\nEnter poss. of element to delete : ");
+	scanf("%d", &num);
+	delete_by_value(arr, num, 5);
+	
+	    printf("Stored element in array : %d %d %d %d", arr[0], arr[1], arr[2], arr[3]);
+
+}
