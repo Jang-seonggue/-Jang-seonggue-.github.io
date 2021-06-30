@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class PascalTriangle {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in); // Scanner 객체 생성
+		
+		int n; // 입력 받을 양의 정수
+		System.out.println("양의 정수 하나를 입력하세요");
+		do{
+			n = sc.nextInt();
+			continue;
+		}while(n > 20); // n의 입력이 20이하가 아닐 경우 반복
+		
+		int intArray[][];  // 2차원 배렬 레퍼런스 선언
+		intArray = new int[n + 1][]; // 각 행의 레퍼런스 배열 생성
+		for(int a = 0; a < n + 1; a++) // 각 행의 정수 배열 수 자동 생성
+		{
+			intArray[a] = new int[a + 1]; // ex) intArray[0] = new int[1]
+		}
+		
+		for(int i = 0; i < n + 1; i++) // 행에 대한 반복
+			for(int j = 0; j < i + 1; j++) // 열에 대한 반복
+				if(j == 0 || j == i) // 첫 줄과 두번째 줄은 1만 나와야하는 조건
+					intArray[i][j] = 1;
+				else // 세번째 줄부터의 파스칼 삼각형 숫자 공식
+					intArray[i][j] = intArray[i - 1][j - 1] + intArray[i - 1][j];
+		
+		for(int i = 0; i < n + 1; i++) // 배열 출력하기
+		{
+			for(int j = 0; j < i + 1; j++)
+				System.out.print(intArray[i][j]+" "); // 숫자간 띄어쓰기 " "
+			System.out.println(); // 행간 줄 바꿈
+		}
+		sc.close(); // scanner 객체 닫음
+	}
+
+}
